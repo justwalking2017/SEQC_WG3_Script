@@ -1,5 +1,7 @@
-# SEQC_WG3_Script
-This fold including source code for SEQC#WG3 project
+
+This repository contains code for SEQC2#WG3 project
+
+#Code
 
     *1_QC/                         ##Source codes for quality control of fastq files
     *2_Alignment_And_Calling/      ##Source codes for generating pipelines for each sample and generated shell file for each sample of various pipelines
