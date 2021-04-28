@@ -9,6 +9,7 @@ This repository contains code for SEQC2#WG3 project
     4_Benchmarking/               ##Source codes for make final benchmark vcf and bed files
     5_Reproducibility_Cal/        ##Source codes for calculation of reproducibility
     6_PRF_Cal/                    ##Source codes for calculation of Precision/Recal/F-score
+    7_VarianceAnalysis/           ##description for detail of variance analysis
 
 **Reference Used:**
 
