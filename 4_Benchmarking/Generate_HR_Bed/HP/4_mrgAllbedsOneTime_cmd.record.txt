@@ -1,0 +1,21 @@
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ for i in bedmulinter_*.txt; do cut -f 1-5 $i | sed 's/^chr//g' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ for i in {1..27}; do grep -v "random" extra_bedmulinter_A.all27tabl.txt | awk '$4=='$i'' | awk '{a=a+($3-$2)}END{print a}' >>stat_A.txt; done &
+[3] 6029
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ for i in {1..27}; do grep -v "random" extra_bedmulinter_C.all27tabl.txt | awk '$4=='$i'' | awk '{a=a+($3-$2)}END{print a}' >>stat_C.txt; done &
+[4] 6039
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ for i in {1..27}; do grep -v "random" extra_bedmulinter_D.all27tabl.txt | awk '$4=='$i'' | awk '{a=a+($3-$2)}END{print a}' >>stat_D.txt; done &
+[5] 6048
+[4] 5075
+
+>>>>>>>>>>>>>>>>06/20/2018>>>>>>>>>>>>>>>>>>>
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_A.all27tabl.txt | awk '$4>=27' | cut -f 1-3 >../5_FinalreproBed/repro_A_27up.bed &
+[1] 24098
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_C.all27tabl.txt | awk '$4>=27' | cut -f 1-3 >../5_FinalreproBed/repro_C_27up.bed &
+[2] 24103
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_D.all27tabl.txt | awk '$4>=27' | cut -f 1-3 >../5_FinalreproBed/repro_D_27up.bed &
+[3] 24106
+
+

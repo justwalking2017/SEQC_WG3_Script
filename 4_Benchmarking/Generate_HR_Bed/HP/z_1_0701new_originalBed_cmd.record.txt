@@ -1,0 +1,8 @@
+ 794  for i in *bed ; do grep CALLABLE $i >../A_callableOut/$i; done &
+  796  for i in *bed ; do grep CALLABLE $i >../C_callableOut/$i; done &
+  798  for i in *bed ; do grep CALLABLE $i >../D_callableOut/$i; done &
+  891  for i in {1..27} ; do awk '$4=='$i'' extra_all_C_27mrg.txt |  awk '{a=a+($3-$2)}END{print a}' >>stat_C.txt ; done  &
+  893  for i in {1..27} ; do awk '$4=='$i'' extra_all_A_27mrg.txt |  awk '{a=a+($3-$2)}END{print a}' >>stat_A.txt ; done  &
+
+cut -f 1-5 all_D_27mrg.txt | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_all_D_27mrg.txt &
+for i in {1..27} ; do awk '$4=='$i'' extra_all_D_27mrg.txt |  awk '{a=a+($3-$2)}END{print a}' >>stat_D.txt; done &

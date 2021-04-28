@@ -1,0 +1,73 @@
+ 1201  bedtools subtract -a preHbed_extra_bedmulinter_LCL5.all81tabl.bed -b ../z_0_difBed/AllRepeats_lt51bp_gt95identity_merged.bed  >z_LCL5_subtract1.bed &
+ 1211  bedtools subtract -a z_LCL5_subtract1.bed -b ../z_0_difBed/AllRepeats_51to200bp_gt95identity_merged.bed >z_LCL5_subtract2.bed &
+ 1212  bedtools subtract -a z_LCL5_subtract2.bed -b ../z_0_difBed/AllRepeats_gt200bp_gt95identity_merged.bed >z_LCL5_subtract3.bed &
+ 1214  bedtools subtract -a z_LCL5_subtract3.bed -b ../z_0_difBed/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set_REF_N.bed >z_LCL5_subtract4.bed &
+ 1216  bedtools subtract -a z_LCL5_subtract4.bed -b ../z_0_difBed/hg38_self_chain_nosamepos_withalts_gt10k.bed >z_LCL5_subtract5.bed &
+ 1218  bedtools subtract -a z_LCL5_subtract5.bed -b ../z_0_difBed/remapped_superdupsmerged_all_sort.bed >z_LCL5_subtract6.bed &
+ 1219  bedtools subtract -a z_LCL5_subtract6.bed -b ../z_0_difBed/SimpleRepeat_imperfecthomopolgt10_slop5.bed >z_LCL5_subtract7.bed &
+
+
+ 1020  bedtools subtract -a preHbed_extra_bedmulinter_LCL5.all81tabl.bed -b remapped_superdupsmerged_all_sort.bed >supDupFilt_preHbed_extra_bedmulinter_LCL5.all81tabl.bed &
+ 1021  bedtools subtract -a preHbed_extra_bedmulinter_LCL6.all81tabl.bed -b remapped_superdupsmerged_all_sort.bed >supDupFilt_preHbed_extra_bedmulinter_LCL6.all81tabl.bed &
+
+
+ 1030  bedtools subtract -a supDupFilt_preHbed_extra_bedmulinter_LCL6.all81tabl.bed -b SimpleRepeat_imperfecthomopolgt10_slop5.bed  >smpRpFilt_supDupFilt_preHbed_extra_bedmulinter_LCL6.all81tabl.bed &
+ 1031  bedtools subtract -a supDupFilt_preHbed_extra_bedmulinter_LCL5.all81tabl.bed -b SimpleRepeat_imperfecthomopolgt10_slop5.bed  >smpRpFilt_supDupFilt_preHbed_extra_bedmulinter_LCL5.all81tabl.bed &
+
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ awk '{a=a+($3-$2)}END{print a}' supDupFilt_preHbed_extra_bedmulinter_LCL5.all81tabl.bed
+2706215230
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ awk '{a=a+($3-$2)}END{print a}' supDupFilt_preHbed_extra_bedmulinter_LCL6.all81tabl.bed
+2706224592
+
+
+
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ awk '{a=a+($3-$2)}END{print a}' supDupFilt_preHbed_extra_bedmulinter_LCL7.all81tabl.bed
+2715506668
+[2]+  Done                    sed 's/LCL5/LCL7/g;s/LCL6/LCL8/g' run78.sh | sh -
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ awk '{a=a+($3-$2)}END{print a}' supDupFilt_preHbed_extra_bedmulinter_LCL8.all81tabl.bed
+2705918096
+
+
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ for i in LCL*bed ; do awk '{a=a+($3-$2)}END{print a}' $i; done
+2653647374
+2653656425
+2662804457
+2653356006
+
+
+1010  bedtools merge -i LCL6_Highrepro.bed >LCL6_Highrepro.bed.merged &
+ 1011  bedtools merge -i LCL7_Highrepro.bed >LCL7_Highrepro.bed.merged &
+ 1012  bedtools merge -i LCL8_Highrepro.bed >LCL8_Highrepro.bed.merged &
+ 1013  ll
+ 1014  mv LCL5_Highrepro.bed.merged LCL5_Highrepro.callable.bed
+ 1015  mv LCL6_Highrepro.bed.merged LCL6_Highrepro.callable.bed
+ 1016  mv LCL7_Highrepro.bed.merged LCL7_Highrepro.callable.bed
+ 1017  mv LCL8_Highrepro.bed.merged LCL8_Highrepro.callable.bed
+
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ for i in *callable.bed
+> do
+> awk '{a=a+($3-$2)}END{print a}' $i
+> done
+2653647374
+2653656425
+2662804457
+2653356006
+
+
+1028  for i in *callable.bed; do java -jar /dev/ngs002/hhong/bin/rtg-tools-3.9/RTG.jar bgzip $i; done &
+
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ bedtools intersect -a remapped_superdupsmerged_all_sort.bed -b SimpleRepeat_imperfecthomopolgt10_slop5.bed >interOut_difficultRegion.bed &
+
+
+for i in LCL*bed ; do cat $i | sort-bed --unique - | mergeBed -i - >0829callable_"$i" ; done &
+
+
+[hhong@NCSHPC01 z_3_0719_filtDifReg_HighBed]$ for i in 0829callable_LCL*
+> do
+> awk '{a=a+($3-$2)}END{print a}' $i
+> done
+2653647374
+2653656425
+2662804457
+2653356006
+

@@ -1,0 +1,19 @@
+for i in MV* ; do grep -v "#" $i | awk '{print $1"\t"($2-1)"\t"($2-1+length($4))}' >$i.bed; done &
+
+ 1082  perl bedFilter_CS_vs_no-CSLR100.v2.pl ref.length MVfilt_A_8alignCS_3repCS.sort.vcf.bed MVFeth_A_8alignCS_3repCS.sort.vcf.bed mvFilt_A.bed
+ 1086  perl bedFilter_CS_vs_no-CSLR100.v2.pl ref.length MVfilt_C_8alignCS_3repCS.sort.vcf.bed MVFeth_C_8alignCS_3repCS.sort.vcf.bed mvFilt_C.bed
+ 1087  perl bedFilter_CS_vs_no-CSLR100.v2.pl ref.length MVfilt_D_8alignCS_3repCS.sort.vcf.bed MVFeth_D_8alignCS_3repCS.sort.vcf.bed mvFilt_D.bed
+
+
+[hhong@NCSHPC01 2_subtractBed]$ bedtools subtract -a  HighReproBed3_A.bed -b mvFilt_A.bed >HighReproBed4_A.bed &
+[hhong@NCSHPC01 2_subtractBed]$ bedtools subtract -a  HighReproBed3_C.bed -b mvFilt_C.bed >HighReproBed4_C.bed &
+[hhong@NCSHPC01 2_subtractBed]$ bedtools subtract -a  HighReproBed3_D.bed -b mvFilt_D.bed >HighReproBed4_D.bed &
+
+cat HighReproBed4_A.bed |  sort-bed --unique - | mergeBed -i - >sortMrg_HighReproBed4_A.bed &
+cat HighReproBed4_C.bed |  sort-bed --unique - | mergeBed -i - >sortMrg_HighReproBed4_C.bed &
+cat HighReproBed4_D.bed |  sort-bed --unique - | mergeBed -i - >sortMrg_HighReproBed4_D.bed &
+
+[hhong@NCSHPC01 2_subtractBed]$ gzip HighReproBed4_A.bed -c >HighRepro_A.bed.gz &
+[hhong@NCSHPC01 2_subtractBed]$ gzip HighReproBed4_C.bed -c >HighRepro_C.bed.gz &
+[hhong@NCSHPC01 2_subtractBed]$ gzip HighReproBed4_D.bed -c >HighRepro_D.bed.gz &
+

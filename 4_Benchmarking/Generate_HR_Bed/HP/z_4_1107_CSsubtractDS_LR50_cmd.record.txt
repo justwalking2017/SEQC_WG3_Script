@@ -1,0 +1,27 @@
+awk '{print "chr"$0}' DS_A.bed | sed 's/chr23/chrX/g;s/chr24/chrY/g' | sort-bed --unique - | mergeBed -i - >DS_A.format.bed &
+awk '{print "chr"$0}' DS_C.bed | sed 's/chr23/chrX/g;s/chr24/chrY/g' | sort-bed --unique - | mergeBed -i - >DS_C.format.bed &
+awk '{print "chr"$0}' DS_D.bed | sed 's/chr23/chrX/g;s/chr24/chrY/g' | sort-bed --unique - | mergeBed -i - >DS_D.format.bed &
+
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ perl bedFilter_CS_vs_no-CSLR100.v2.pl ref.length CS_A.bed DS_A.format.bed CSsubDS_A.bed &
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ perl bedFilter_CS_vs_no-CSLR100.v2.pl ref.length CS_C.bed DS_C.format.bed CSsubDS_C.bed &
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ perl bedFilter_CS_vs_no-CSLR100.v2.pl ref.length CS_D.bed DS_D.format.bed CSsubDS_D.bed &
+
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ bedtools subtract -a HighReproBed2_A.bed -b CSsubDS_A.bed >HighReproBed3_A.bed &
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ bedtools subtract -a HighReproBed2_C.bed -b CSsubDS_C.bed >HighReproBed3_C.bed &
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ bedtools subtract -a HighReproBed2_D.bed -b CSsubDS_D.bed >HighReproBed3_D.bed &
+
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ cat  HighReproBed3_A.bed | sort-bed --unique - | mergeBed -i - >sortMrg_HighReproBed3_A.bed &
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ cat  HighReproBed3_C.bed | sort-bed --unique - | mergeBed -i - >sortMrg_HighReproBed3_C.bed &
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ cat  HighReproBed3_D.bed | sort-bed --unique - | mergeBed -i - >sortMrg_HighReproBed3_D.bed &
+
+[hhong@NCSHPC01 z_4_1107_CSsubtractDS_LR50]$ for i in HighReproBed*bed
+> do
+> awk '{a=a+$3-$2}END{print a}' $i
+> done
+2668383982
+2669062601
+2659099596
+2470545317
+2471046163
+2461581701
+

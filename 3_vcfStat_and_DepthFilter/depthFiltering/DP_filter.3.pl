@@ -20,8 +20,8 @@ if($vcfFile=~/FreeBayes/){
 		}
 		my(@arry)=split/\t/,$_;
 		my(@arry2)=split/\:/,$arry[9];
-		next if($arry2[1]<8);
-		next if($arry2[1]>223);
+		next if($arry2[1]<$minDP);
+		next if($arry2[1]>$maxDP);
 		print EXPORT $_."\n";	
 	}
 	close VARFILE;
@@ -38,9 +38,9 @@ if($vcfFile=~/FreeBayes/){
                 my(@arry)=split/\t/,$_;
 #  		print $_."\n";exit;
 	        my(@arry2)=split/\:/,$arry[9];
-                next if($arry2[3]<8);
+                next if($arry2[3]<$minDP);
 #		print $arry[9]."\n";exit;
-                next if($arry2[3]>223);
+                next if($arry2[3]>$maxDP);
                 print EXPORT $_."\n";
         }
         close VARFILE;
@@ -68,8 +68,8 @@ if($vcfFile=~/FreeBayes/){
 		if(!defined $dp){
 			print "DP undefined at". $vcfFile. "\n";exit;
 		}
-                next if($dp<8);
-                next if($dp>223);
+                next if($dp<$minDP);
+                next if($dp>$maxDP);
                 print EXPORT $_."\n";
         }
         close VARFILE;
@@ -85,7 +85,7 @@ if($vcfFile=~/FreeBayes/){
                 }
 		my $dp=();
                 my(@arry)=split/\t/,$_;
-		if($arry[8]=~/DP/){
+		if($arry[$minDP]=~/DP/){
 			my(@arry2)=split/\:/,$arry[9];
 			$dp=$arry2[2];
 		}else{
@@ -99,8 +99,8 @@ if($vcfFile=~/FreeBayes/){
 		if(!defined $dp){
                         print "DP undefined at". $vcfFile. "\n";exit;
                 }
-                next if($dp<8);
-                next if($dp>223);
+                next if($dp<$minDP);
+                next if($dp>$maxDP);
                 print EXPORT $_."\n";
         }
         close VARFILE;
@@ -121,8 +121,8 @@ if($vcfFile=~/FreeBayes/){
                 if(!defined $dp){
                         print "DP undefined at". $vcfFile. "\n";exit;
                 }
-                next if($dp<8);
-                next if($dp>223);
+                next if($dp<$minDP);
+                next if($dp>$maxDP);
                 print EXPORT $_."\n";
         }
         close VARFILE;
@@ -139,9 +139,9 @@ if($vcfFile=~/FreeBayes/){
                 my $dp=();
                 my(@arry)=split/\t/,$_;
                 my(@arry2)=split/\:/,$arry[9];
-                if($arry[8]=~/'GT:GQ:GQX:DP:DPF:AD'/){
+                if($arry[$minDP]=~/'GT:GQ:GQX:DP:DPF:AD'/){
                         $dp=$arry2[3];
-                }elsif($arry[8]=~/'GT:GQX:DP:DPF:AD'/){
+                }elsif($arry[$minDP]=~/'GT:GQX:DP:DPF:AD'/){
                         $dp=$arry2[2];
                 }else{
                         $dp=$arry2[3];
@@ -149,8 +149,8 @@ if($vcfFile=~/FreeBayes/){
                 if(!defined $dp){
                         print "DP undefined at". $vcfFile. "\n";exit;
                 }
-                next if($dp<8);
-                next if($dp>223);
+                next if($dp<$minDP);
+                next if($dp>$maxDP);
                 print EXPORT $_."\n";
         }
         close VARFILE;

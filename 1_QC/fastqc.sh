@@ -11,9 +11,7 @@
 export mybin=/dev/ngs001/tchen/bin/FastQC/
 export PATH=$mybin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 outdir=/dev/ngs001/bpan/seqc_QC/CQ_QC
-sourcedir1=/dev/ngs004/hhong/CQ/data/Quartet/DNA/20170403_DNA_ILM_ARD
-sourcedir2=/dev/ngs004/hhong/CQ/data/Quartet/DNA/20170329_DNA_ILM_NVG
-sourcedir3=/dev/ngs004/hhong/CQ/data/Quartet/DNA/20170216_DNA_ILM_WUX
+sourcedir1=dev/ngs004/hhong/CQ/data/Quartet/DNA
 
 fastqc -q  $sourcedir1/Quartet_DNA_ILM_"$1"_20170403_R1.fastq.gz -o $outdir
 fastqc -q  $sourcedir1/Quartet_DNA_ILM_"$1"_20170403_R2.fastq.gz -o $outdir
@@ -23,4 +21,3 @@ fastqc -q  $sourcedir2/Quartet_DNA_ILM_"$1"_20170329_R2.fastq.gz -o $outdir
 
 fastqc -q  $sourcedir3/Quartet_DNA_ILM_"$1"_20170216_R1.fastq.gz -o $outdir
 fastqc -q  $sourcedir3/Quartet_DNA_ILM_"$1"_20170216_R2.fastq.gz -o $outdir
-

@@ -1,0 +1,26 @@
+1051  bedtools subtract -a ../z_2_0719_pre99HighBed/preHbed_extra_all_A_27mrg.bed  -b remapped_superdupsmerged_all_sort.bed >supdupRm_A_25up.bed &
+1053  bedtools subtract -a ../z_2_0719_pre99HighBed/preHbed_extra_all_C_27mrg.bed  -b remapped_superdupsmerged_all_sort.bed >supdupRm_C_2up.bed &
+1054  bedtools subtract -a ../z_2_0719_pre99HighBed/preHbed_extra_all_D_27mrg.bed  -b remapped_superdupsmerged_all_sort.bed >supdupRm_D_2up.bed &
+1056  mv supdupRm_A_25up.bed supdupRm_A_2up.bed
+
+
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ bedtools subtract -a supdupRm_A_2up.bed -b SimpleRepeat_imperfecthomopolgt10_slop5.bed >SmpRm_supdupRm_A_2up.bed &
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ bedtools subtract -a supdupRm_C_2up.bed -b SimpleRepeat_imperfecthomopolgt10_slop5.bed >SmpRm_supdupRm_C_2up.bed &
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ bedtools subtract -a supdupRm_D_2up.bed -b SimpleRepeat_imperfecthomopolgt10_slop5.bed >SmpRm_supdupRm_D_2up.bed &
+
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ for i in SmpRm_supdupRm_*bed ; do awk '{a=a+$3-$2}END{print a}' $i ; done
+2668383982
+2669062601
+2659099596
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ for i in supdupRm_*bed ; do awk '{a=a+$3-$2}END{print a}' $i ; done
+2721103910
+2721788401
+2711684239
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ sed 's/X/23/g;s/Y/24/g' SmpRm_supdupRm_A_2up.bed | sort -k1,1n -k2,2n | mergeBed -i - | awk '{print "chr"$0}' - | sed 's/chr23/chrX/g;s/chr24/chrY/g' >HighReproBed2_A.bed &
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ sed 's/X/23/g;s/Y/24/g' SmpRm_supdupRm_C_2up.bed | sort -k1,1n -k2,2n | mergeBed -i - | awk '{print "chr"$0}' - | sed 's/chr23/chrX/g;s/chr24/chrY/g' >HighReproBed2_C.bed &
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ sed 's/X/23/g;s/Y/24/g' SmpRm_supdupRm_D_2up.bed | sort -k1,1n -k2,2n | mergeBed -i - | awk '{print "chr"$0}' - | sed 's/chr23/chrX/g;s/chr24/chrY/g' >HighReproBed2_D.bed &
+
+[hhong@NCSHPC01 z_3_1025_DifRegionFilteredBed]$ for i in HighReproBed2_*bed; do awk '{a=a+$3-$2}END{print a}' $i ; done                                                                                 2668383982
+2669062601
+2659099596
+

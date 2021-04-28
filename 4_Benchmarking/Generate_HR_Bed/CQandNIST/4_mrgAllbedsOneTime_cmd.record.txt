@@ -1,0 +1,40 @@
+for i in bedmulinter_*.txt; do cut -f 1-5 $i | sed 's/^chr//g' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ for i in {1..81}
+> do
+> grep -v "random" extra_bedmulinter_LCL6.all81tabl.txt | awk '$4=='$i'' | awk '{a=a+($3-$2)}END{print a}' >>stat_LCL6.txt
+> done &
+[6] 6168
+
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ for i in {1..81}; do grep -v "random" extra_bedmulinter_LCL7.all81tabl.txt | grep -v "Y" | awk '$4=='$i'' | awk '{a=a+($3-$2)}END{print a}' >>stat_LCL7.noY.txt
+> done &
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 1141  grep -v "random" extra_bedmulinter_NIST8398.all27tabl.txt | awk '$4==20' | cut -f 5 | sort | uniq -c >check20cs_NIST.txt &
+ 1142  grep -v "random" extra_bedmulinter_NIST8398.all27tabl.txt | awk '$4==21' | cut -f 5 | sort | uniq -c >check21cs_NIST.txt &
+
+ 1168  grep -v "random" extra_bedmulinter_NIST8398.all27tabl.txt | awk '$4==3' | cut -f 5 | sort | uniq -c | sort -nr >z_checkNIST/check3cs_NIST.sort.txt &
+ 1169  grep -v "random" extra_bedmulinter_NIST8398.all27tabl.txt | awk '$4==2' | cut -f 5 | sort | uniq -c | sort -nr >z_checkNIST/check2cs_NIST.sort.txt &
+
+
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL5.all81tabl.txt | awk '$4==78' | cut -f 5 | sort | uniq -c | sort -nr >z_checkNIST/check78_LCL5.sort.txt  &
+[2] 14439
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL5.all81tabl.txt | awk '$4==79' | cut -f 5 | sort | uniq -c | sort -nr >z_checkNIST/check79_LCL5.sort.txt  &
+[3] 14449
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL5.all81tabl.txt | awk '$4==9' | cut -f 5 | sort | uniq -c | sort -nr >z_checkNIST/check9_LCL5.sort.txt  &
+[4] 14457
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL5.all81tabl.txt | awk '$4==8' | cut -f 5 | sort | uniq -c | sort -nr >z_checkNIST/check8_LCL5.sort.txt  &
+[5] 14465
+
+>>>>>>>>>>>>>>>>>>>>>06/20/2018>>>>>>>>>>>>>>>>>>
+grep -v "random" extra_bedmulinter_NIST8398.all27tabl.txt | awk '$4>=27' | cut -f 1-3 >../5_FinalreproBed/reproNIST8398_27up.bed &
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL5.all81tabl.txt | awk '$4>=79' | cut -f 1-3 >../5_FinalreproBed/reproLCL5_79up.bed &
+[1] 24011
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL6.all81tabl.txt | awk '$4>=79' | cut -f 1-3 >../5_FinalreproBed/reproLCL6_79up.bed &
+[2] 24016
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL7.all81tabl.txt | awk '$4>=79' | cut -f 1-3 >../5_FinalreproBed/reproLCL7_79up.bed &
+[3] 24021
+[hhong@NCSHPC01 4_mrgAllbedsOneTime]$ grep -v "random" extra_bedmulinter_LCL8.all81tabl.txt | awk '$4>=79' | cut -f 1-3 >../5_FinalreproBed/reproLCL8_79up.bed &
+[4] 24026
+

@@ -1,0 +1,9 @@
+[1]-  Done                    for i in *txt;
+do
+    awk '$4>2' $i | awk '{a+=($3-$2)}END{print a}' > z_stat3upOut/$i;
+done
+[2]+  Done                    for i in *txt;
+do
+    awk '$4>1' $i | awk '{a+=($3-$2)}END{print a}' > z_stat2upOut/$i;
+done
+

@@ -1,0 +1,16 @@
+ 1092  awk '$4>=10' extra_bedmulinter_LCL5.all81tabl.txt | awk '{print $1"\t"$2"\t"$3}' >preHbed_extra_bedmulinter_LCL5.all81tabl.bed &
+ 1093  awk '$4>=10' extra_bedmulinter_LCL6.all81tabl.txt | awk '{print $1"\t"$2"\t"$3}' >preHbed_extra_bedmulinter_LCL6.all81tabl.bed &
+ 1094  awk '$4>=10' extra_bedmulinter_LCL7.all81tabl.txt | awk '{print $1"\t"$2"\t"$3}' >preHbed_extra_bedmulinter_LCL7.all81tabl.bed &
+
+ 1098  awk '$4>=9' extra_bedmulinter_NIST8398.all27tabl.txt | awk '{print $1"\t"$2"\t"$3}' >preHbed_extra_bedmulinter_NIST8398.all27tabl.bed &
+ 1099  awk '$4>=11' extra_bedmulinter_LCL8.all81tabl.txt | awk '{print $1"\t"$2"\t"$3}' >preHbed_extra_bedmulinter_LCL8.all81tabl.bed &
+
+1044  for i in LCL5 LCL6 LCL7 LCL8; do bedtools merge -i preHbed_extra_bedmulinter_"$i".all81tabl.bed >"$i".consensus.bed; done &
+
+[hhong@NCSHPC01 z_2_0719_pre99HighBed]$ for i in LCL5 LCL6 LCL7 LCL8; do  awk '{a=a+($3-$2)}END{print a}' "$i".consensus.bed; done &
+[1] 13259
+[hhong@NCSHPC01 z_2_0719_pre99HighBed]$ 2816605231
+2816616016
+2832284258
+2816025156
+ 

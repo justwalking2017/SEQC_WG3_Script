@@ -1,0 +1,9 @@
+[2]   Done                    bedtools subtract -a LCL5_Highrepro.bed -b simp_mendelian_conflict.bed > LCL5_Highrepro2.bed
+[3]-  Done                    bedtools subtract -a LCL6_Highrepro.bed -b simp_mendelian_conflict.bed > LCL6_Highrepro2.bed
+[hhong@NCSHPC01 z_4_0805_filtMendelian_HighBed]$ awk '{a=a+($3-$2)}END{print a}' LCL5_Highrepro2.bed
+2584351716
+[hhong@NCSHPC01 z_4_0805_filtMendelian_HighBed]$ awk '{a=a+($3-$2)}END{print a}' LCL6_Highrepro2.bed
+2584356766
+
+[hhong@NCSHPC01 z_4_0805_filtMendelian_HighBed]$ awk '{a=a+($3-$2)}END{print a}' simp_mendelian_conflict.bed
+91895852

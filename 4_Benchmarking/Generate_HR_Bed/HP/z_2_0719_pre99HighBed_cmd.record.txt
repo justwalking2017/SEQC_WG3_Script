@@ -1,0 +1,8 @@
+[hhong@NCSHPC01 z_2_0719_pre99HighBed]$ for i in extra_all_*
+> do
+> awk '{a=a+($3-$2)}END{print a}' $i
+> done
+2845905567
+2846840778
+2830615191
+

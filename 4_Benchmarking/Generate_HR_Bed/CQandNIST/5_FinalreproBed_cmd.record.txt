@@ -1,0 +1,10 @@
+ 1073  head reproLCL5_79up.bed 
+ 1074  awk '{print "chr"$1"\t"$2"\t"$3}' reproLCL5_79up.bed | head
+ 1075  awk '{print "chr"$1"\t"$2"\t"$3}' reproLCL5_79up.bed >repro_LCL5_79up.bed  &
+ 1076  awk '{print "chr"$1"\t"$2"\t"$3}' reproLCL6_79up.bed >repro_LCL6_79up.bed  &
+ 1077  awk '{print "chr"$1"\t"$2"\t"$3}' reproLCL7_79up.bed >repro_LCL7_79up.bed  &
+ 1078  awk '{print "chr"$1"\t"$2"\t"$3}' reproLCL8_79up.bed >repro_LCL8_79up.bed  &
+ 1079  awk '{print "chr"$1"\t"$2"\t"$3}' reproNIST8398_27up.bed >repro_NIST8398_27up.bed  &
+ 1080  history
+ 1081  vi  cmd.record
+ 1082  history | tail -n 10 >cmd.record

@@ -1,0 +1,40 @@
+ 1030  for i in bedmulinter_LCL5.all81tabl.txt; do cut -f 1-5 $i | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+ 1034  cd ../LCL6_81mrgOut/
+ 1035  for i in bedmulinter_LCL6.all81tabl.txt; do cut -f 1-5 $i | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+ 1036  cd ../LCL7_81mrgOut/
+ 1037  for i in bedmulinter_LCL7.all81tabl.txt; do cut -f 1-5 $i | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+ 1038  ll
+ 1043  for i in bedmulinter_LCL7.all81tabl.txt; do cut -f 1-5 $i | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+ 1045  ll
+ 1046  for i in bedmulinter_LCL8.all81tabl.txt; do cut -f 1-5 $i | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_"$i"; done &
+ 1050  ll
+ 1051  head extra_bedmulinter_LCL5.all81tabl.txt
+ 1052  more ../../4_mrgAllbedsOneTime/cmd.record
+ 1053  for i in {1..81}; do awk '$4=='$i'' extra_bedmulinter_LCL5.all81tabl.txt | awk '{a=a+($3-$2)}END{print a}' >>stat_LCL5.txt; done &
+ 1054  ll
+ 1055  cd ../LCL6_81mrgOut/
+ 1056  for i in {1..81}; do awk '$4=='$i'' extra_bedmulinter_LCL6.all81tabl.txt | awk '{a=a+($3-$2)}END{print a}' >>stat_LCL6.txt; done &
+ 1057  ll
+ 1058  cd ../LCL8_81mrgOut/
+ 1059  ll
+ 1060  for i in {1..81}; do awk '$4=='$i'' extra_bedmulinter_LCL8.all81tabl.txt | awk '{a=a+($3-$2)}END{print a}' >>stat_LCL8.txt; done &
+ 1061  ll
+ 1066  for i in {1..81}; do awk '$4=='$i'' extra_bedmulinter_LCL7.all81tabl.txt | awk '{a=a+($3-$2)}END{print a}' >>stat_LCL7.txt; done &
+
+cut -f 1-5 $i bedmulinter_NIST8398.all27tabl.txt  | sed 's/^chr//g' | grep -v 'random' | awk '$1<23||$1~/X|Y/' >extra_bedmulinter_NIST8398.all27tabl.txt
+for i in {1..27}; do  awk '$4=='$i'' extra_bedmulinter_NIST8398.all27tabl.txt | awk '{a=a+($3-$2)}END{print a}' >>stat_NIST8398.txt; done &
+
+
+ 1094  for i in *table.txt; do awk '{print $2}' $i | tr '\n' '\t' | awk '{print $0}' >>z_LCL5_statAll.txt; done
+ 1096  cd ../LCL6out/
+ 1097  ll
+ 1098  for i in *table.txt; do awk '{print $2}' $i | tr '\n' '\t' | awk '{print $0}' >>z_LCL6_statAll.txt; done
+ 1099  cd ../LCL7out/
+ 1100  ll
+ 1101  for i in *table.txt; do awk '{print $2}' $i | tr '\n' '\t' | awk '{print $0}' >>z_LCL7_statAll.txt; done
+ 1102  cd ../LCL8out/
+ 1103  for i in *table.txt; do awk '{print $2}' $i | tr '\n' '\t' | awk '{print $0}' >>z_LCL8_statAll.txt; done
+ 1104  ll
+ 1105  cd ../NIST8398out/
+ 1106  for i in *table.txt; do awk '{print $2}' $i | tr '\n' '\t' | awk '{print $0}' >>z_NIST8398_statAll.txt; done
+
