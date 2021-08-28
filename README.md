@@ -27,11 +27,11 @@ Files for GATK recalibration:
 ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg38/dbsnp_146.hg38.vcf.gz
 
 **Prerequisites**
+    
     x86_64-linux
     Java (version > jdk1.8.0_91)
     Perl (version >5.26.2)
     R (version >3.6.1)
-    
     fastqc
     bowtie2-2.2.9
     bwa-0.7.15
