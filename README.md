@@ -25,3 +25,27 @@ Files for GATK recalibration:
 
 
 ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg38/dbsnp_146.hg38.vcf.gz
+
+**Prerequisites**
+    x86_64-linux
+    Java (version > jdk1.8.0_91)
+    Perl (version >5.26.2)
+    R (version >3.6.1)
+    
+    fastqc
+    bowtie2-2.2.9
+    bwa-0.7.15
+    isaac-01.15.04.01
+    stampy-1.0.29
+    GATK-3.7
+    picard-2.7.1
+    samtools-1.3.1
+    freeBayes-v1.1.0-1
+    samtools-1.3.1
+    bcftools-1.3.1
+    bedtools-2.28.0
+    SNVer-0.5.3
+    Varscan.v2.3.9  
+    
+    
+
